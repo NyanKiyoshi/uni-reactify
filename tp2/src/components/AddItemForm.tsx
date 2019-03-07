@@ -32,8 +32,9 @@ export default class AddItemForm
 
     public render(): any {
         return (
-            <form className="AddITemForm" onSubmit={this.onFormSubmit.bind(this)}>
-                <input type="text" onChange={this.onTextChanged.bind(this)} value={this.state.currentText} />
+            <form className="AddItemForm" onSubmit={this.onFormSubmit.bind(this)}>
+                <input type="text" placeholder="New entry text..."
+                       onChange={this.onTextChanged.bind(this)} value={this.state.currentText} />
                 <button type="submit">Add</button>
             </form>
         );

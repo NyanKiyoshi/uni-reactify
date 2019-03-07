@@ -4,8 +4,6 @@ import './ItemListApp.css';
 import ItemsList from "./components/ItemsList";
 import AddItemForm from "./components/AddItemForm";
 
-const DEFAULT_BOX_COLOR = "#61DAFB";
-
 class ItemListApp extends Component<any, IItemListAppState> {
 
     public constructor(props: any) {
@@ -34,12 +32,12 @@ class ItemListApp extends Component<any, IItemListAppState> {
                 </header>
 
                 <article>
+                    <header>
+                        <AddItemForm onAddItem={this.addItem.bind(this)} />
+                    </header>
+
                     <ItemsList items={this.state.items} onRemoveItem={this.removeItem.bind(this)} />
                 </article>
-
-                <footer>
-                    <AddItemForm onAddItem={this.addItem.bind(this)} />
-                </footer>
             </div>
         );
     }
