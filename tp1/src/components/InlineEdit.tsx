@@ -1,11 +1,13 @@
 import * as React from 'react';
 import {ChangeEvent, Component} from "react";
-import {IInlineEdit} from "./interfaces";
+import {IInlineEditProps, IInlineEditState} from "./interfaces";
 
-export default class InlineEdit extends Component<IInlineEdit, any> {
+export default class InlineEdit
+        extends Component<IInlineEditProps, IInlineEditState> {
+
     private currentInputValue = '';
 
-    public constructor(props: IInlineEdit) {
+    public constructor(props: IInlineEditProps) {
         super(props);
 
         this.state = {

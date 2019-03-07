@@ -3,7 +3,7 @@ import * as React from "react";
 import {Component} from "react";
 import {IBoxProps} from "./interfaces";
 
-export default class Box extends Component<IBoxProps, any> {
+export default class Box extends Component<IBoxProps, never> {
     public constructor(props: IBoxProps) {
         super(props);
     }
