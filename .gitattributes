@@ -1,0 +1,7 @@
+# force LF EOL
+* text=auto eol=lf
+
+# generated files
+yarn.lock linguist-generated
+package-lock.json linguist-generated
+*.svg linguist-generated
