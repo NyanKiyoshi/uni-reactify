@@ -5,3 +5,4 @@
 yarn.lock linguist-generated
 package-lock.json linguist-generated
 *.svg linguist-generated
+serviceWorker.js linguist-generated
