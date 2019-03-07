@@ -1,3 +1,8 @@
+:root {
+  --react-color: #61dafb;
+  --bg-color: #282c34;
+}
+
 .App {
   text-align: center;
 }
@@ -9,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: var(--bg-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -19,8 +24,30 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.InlineEdit {
+  display: flex;
+  border: .25rem solid var(--react-color);
+}
+
+.InlineEdit, .InlineEdit > :first-child {
+  border-radius: .5rem;
+}
+
+.InlineEdit > * {
+  border: 0;
+  padding: .5rem;
+}
+
+.InlineEdit > input {
+  background-color: var(--bg-color);
+  color: #fff;
+}
+
+.InlineEdit > button {
+  border-left: 0;
+  background-color: var(--react-color);
+  color: var(--bg-color);
+  cursor: pointer;
 }
 
 @keyframes App-logo-spin {
