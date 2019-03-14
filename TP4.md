@@ -10,3 +10,8 @@ On affichera un menu de liens (__Link__) qui contient les éléments suivants :
 - `Groups` : amène à la route '/groups'
 
 A chacune de ces routes, on associera le rendu d'un composant particulier (__Route__).
+
+Pour commencer, ajouter une route correspondant à chacun des TP précédents :
+- Clock
+- Liste d'items
+- Liste de courses
