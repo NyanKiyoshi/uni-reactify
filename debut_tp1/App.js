@@ -25,7 +25,7 @@ class Clock extends Component {
 	componentWillUnmount() {
 		clearInterval(this.interval);
 		// vous pouvez essayer d'enlever cet appel pour voir l'erreur arriver
-		// 1 seconde (ou moins) après avoir enlevé la Clock du rendu de l'ItemListApp
+		// 1 seconde (ou moins) après avoir enlevé la Clock du rendu de l'TP3ItemListApp
 	}
 	
 	render() {

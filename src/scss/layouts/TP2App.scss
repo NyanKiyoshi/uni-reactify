@@ -1,0 +1,43 @@
+.TP2App {
+    max-width: 512px;
+    margin: auto;
+
+    button {
+        background-color: #ffa0a0;
+        color: #fff;
+        border: #ffdaff;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #ff8080;
+    }
+
+    header {
+        text-align: center;
+    }
+
+    .ListItem,
+    .AddItemForm {
+        display: flex;
+        border: .25rem solid #ffa0a0;
+        padding: .25rem;
+        margin-bottom: .5rem;
+    }
+
+    .ListItem > :first-child,
+    .AddItemForm > :first-child {
+        flex-grow: 1;
+        padding: 0 .25rem;
+    }
+
+    .ListItem > :last-child,
+    .AddItemForm > :last-child {
+        width: 5rem;
+    }
+
+    .AddItemForm input {
+        border: none;
+        line-height: 2rem;
+    }
+}
