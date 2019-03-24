@@ -30,14 +30,3 @@ interface IAddItemFormProps {
 interface IAddItemFormState {
     currentText: string;
 }
-
-interface IInlineEditProps {
-    initialValue: any;
-    type: string;
-    onEdited(newValue: string): void;
-}
-
-interface IInlineEditState {
-    isInEditMode: boolean;
-    value: string;
-}

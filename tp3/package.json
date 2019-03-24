@@ -3,11 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/lodash": "^4.14.123",
     "@types/react": "^16.8.7",
     "@types/react-dom": "^16.8.2",
+    "lodas": "^1.2.0",
+    "lodash.isnumber": "^3.0.3",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-editext": "^3.1.0",
     "react-scripts": "2.1.8",
+    "types": "^0.1.1",
     "typescript": "^3.3.3333"
   },
   "scripts": {
@@ -24,5 +29,12 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "bootstrap": "^4.3.1",
+    "node-sass": "^4.11.0",
+    "react-bootstrap": "^1.0.0-beta.6",
+    "react-edit-inline": "^1.0.8",
+    "riek": "^1.1.0"
+  }
 }

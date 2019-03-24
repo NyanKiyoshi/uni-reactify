@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './ItemListApp.css';
+import './scss/index.scss';
 import ItemsList from "./components/ItemsList";
 import AddItemForm from "./components/AddItemForm";
 
@@ -28,17 +28,19 @@ class ItemListApp extends Component<any, IItemListAppState> {
         
     public render() : any {
         return (
-            <div className="App">
-                <header className="App-header">
+            <div className="ShoppingListApp container">
+                <header className="App-header text-center">
                     <img width="250px" src={logo} className="App-logo" alt="logo" />
                 </header>
 
-                <article>
+                <article className="row justify-content-center">
                     <header>
                         <AddItemForm onAddItem={this.addItem.bind(this)} />
                     </header>
 
-                    <ItemsList items={this.state.items} onRemoveItem={this.removeItem.bind(this)} />
+                    <div className="col-12">
+                        <ItemsList items={this.state.items} onRemoveItem={this.removeItem.bind(this)} />
+                    </div>
                 </article>
             </div>
         );

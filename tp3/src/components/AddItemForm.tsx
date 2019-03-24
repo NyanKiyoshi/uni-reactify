@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {ChangeEvent, Component, FormEvent} from 'react';
+import {Button, Form} from 'react-bootstrap';
 
 export default class AddItemForm
     extends Component<IAddItemFormProps, IAddItemFormState> {
@@ -36,11 +37,16 @@ export default class AddItemForm
 
     public render(): any {
         return (
-            <form className="AddItemForm" onSubmit={this.onFormSubmit.bind(this)}>
-                <input type="text" placeholder="New item name..."
-                       onChange={this.onTextChanged.bind(this)} value={this.state.currentText} />
-                <button type="submit">Add</button>
-            </form>
+            <Form className="AddItemForm" onSubmit={this.onFormSubmit.bind(this)} inline>
+                <input
+                    className="form-control"
+                    type="text"
+                    placeholder="New item name..."
+                    value={this.state.currentText}
+                    onChange={this.onTextChanged.bind(this)} />
+
+                <Button type="submit">Add</Button>
+            </Form>
         );
     }
 }
