@@ -3,30 +3,3 @@ interface IItem {
     quantity: number
     cost: number
 }
-
-interface IItemListAppState {
-    items: IItem[]
-}
-
-interface IItemsListProps {
-    items: IItem[];
-    onRemoveItem(index: number): void;
-}
-
-interface IListItemProps {
-    item: IItem;
-    index: number;
-    onRemove(index: number): void;
-}
-
-interface IListItemState {
-    item: IItem;
-}
-
-interface IAddItemFormProps {
-    onAddItem(item: IItem): void;
-}
-
-interface IAddItemFormState {
-    currentText: string;
-}
