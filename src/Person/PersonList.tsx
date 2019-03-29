@@ -45,8 +45,15 @@ export default withRouter(class PersonList extends Component<any, IPersonListSta
                                         <button
                                             role="Delete Entry"
                                             data-trigger="hover"
-                                            className="btn btn-danger pop">
+                                            className="btn btn-outline-danger pop">
                                             <FontAwesomeIcon icon="trash-alt" />
+                                        </button>
+
+                                        <button
+                                            role="Edit Entry"
+                                            data-trigger="hover"
+                                            className="btn btn-outline-primary pop ml-2">
+                                            <FontAwesomeIcon icon="pen" />
                                         </button>
                                     </div>
                                 </a>

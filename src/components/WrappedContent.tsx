@@ -16,7 +16,9 @@ const setUpPopovers = () => {
     }, 100);
 };
 
-export default function <T extends {foo?: number}>(ParentComponent: ComponentClass<T>): ComponentClass<T, void> {
+export default
+function <T extends {className?: string}>(ParentComponent: ComponentClass<T>): ComponentClass<T, void> {
+
     return class extends Component<T, void> {
         componentDidMount(): void {
             setUpPopovers();
@@ -25,7 +27,7 @@ export default function <T extends {foo?: number}>(ParentComponent: ComponentCla
         public render() {
             return (
                 <div>
-                    <ParentComponent foo={1} {...this.props}/>
+                    <ParentComponent className={this.props.className} {...this.props}/>
                 </div>
             );
         }

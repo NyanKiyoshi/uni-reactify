@@ -20,3 +20,12 @@
     margin-left: 0.2rem;
   }
 }
+
+.list-group-flush {
+    .list-group-item {
+        &:hover {
+            border-color: $gray;
+            background-color: lighten($table-hover-bg, 50);
+        }
+    }
+}
