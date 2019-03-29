@@ -10,7 +10,7 @@ $light-gray: #f1f5f5;
 $gray: #d3d1d0;
 $darken-gray: darken($gray, 10%);
 $skull-gray: #828282;
-$blue: #26a5d4;
+$blue: #008cff;
 $darken-blue: darken($blue, 10%);
 $dark-blue: #21125e;
 $red: #eb5757;
@@ -27,7 +27,7 @@ $h2-font-size: 1.3rem;
 $h3-font-size: 1rem;
 
 $theme-colors: (
-    primary: $light-turquoise,
+    primary: $blue,
     secondary: $white,
     success: $green,
     info: $turquoise,

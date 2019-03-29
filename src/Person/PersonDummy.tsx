@@ -1,5 +1,5 @@
 import JSONGet from '../react-json-forms/components/JSONGet';
-import config from '../config';
+import config from '../configs';
 import * as React from 'react';
 import {Component} from 'react';
 

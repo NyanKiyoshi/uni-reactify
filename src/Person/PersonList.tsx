@@ -1,9 +1,10 @@
 import JSONGet from '../react-json-forms/components/JSONGet';
-import config from '../config';
+import config from '../configs';
 import * as React from 'react';
 import {Component} from 'react';
 import { withRouter } from 'react-router-dom';
 import FetchErrorAlert from '../components/FetchErrorAlert';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 export default withRouter(class PersonList extends Component<any, IPersonListState> {
     public constructor(props: any) {
@@ -26,7 +27,33 @@ export default withRouter(class PersonList extends Component<any, IPersonListSta
                 onError={exc => (
                     <FetchErrorAlert history={this.props.history} />
             )}>
-                Found: {this.state.body.length}
+                <div className="card">
+                    <div className="card-header">
+                        Persons
+                    </div>
+                    <div className="list-group list-group-flush">
+                        {this.state.body.map((value, index) => {
+                            return (
+                                <a href={`/persons/${value.id}`} className="d-flex list-group-item" key={index}>
+                                    {/* Content */}
+                                    <div className="flex-grow-1">
+                                        {value.lastname.toUpperCase()} {value.firstname}
+                                    </div>
+
+                                    {/* Buttons */}
+                                    <div>
+                                        <button
+                                            role="Delete Entry"
+                                            data-trigger="hover"
+                                            className="btn btn-danger pop">
+                                            <FontAwesomeIcon icon="trash-alt" />
+                                        </button>
+                                    </div>
+                                </a>
+                            );
+                        })}
+                    </div>
+                </div>
             </JSONGet>
         )
     }
