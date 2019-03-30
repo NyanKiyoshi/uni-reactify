@@ -1,7 +1,9 @@
 import {Component, default as React} from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import EntryModal from './EntryModal';
+import EntryModal from './modals/EntryModal';
 import {IEntry} from '../interfaces';
+import DeleteButton from './buttons/DeleteButton';
+import EditButton from './buttons/EditButton';
+import Divider from './Divider';
 
 interface IObjectEntryProps {
     title: string,
@@ -35,31 +37,28 @@ export default class ObjectEntry extends Component<IObjectEntryProps, IObjectEnt
         });
     }
 
+    async deleteEntry() {
+        await this.props.onDeleteEntry(this.props.entry);
+    }
+
     render(): any {
         return <>
-            <a href="#" className="d-flex list-group-item" onClick={this.showDetails.bind(this)}>
+            <div className="d-flex list-group-item">
                 {/* Content */}
-                <div className="flex-grow-1">
+                <a href="#" className="flex-grow-1" onClick={this.showDetails.bind(this)}>
                     {this.props.title}
-                </div>
+                </a>
+
+                <Divider />
 
                 {/* Buttons */}
                 <div>
-                    <button
-                        role="Delete Entry"
-                        data-trigger="hover"
-                        className="btn btn-outline-danger pop">
-                        <FontAwesomeIcon icon="trash-alt" />
-                    </button>
-
-                    <button
-                        role="Edit Entry"
-                        data-trigger="hover"
-                        className="btn btn-outline-primary pop ml-2">
-                        <FontAwesomeIcon icon="pen" />
-                    </button>
+                    <DeleteButton onDelete={this.deleteEntry.bind(this)}>
+                        This will permanently delete <strong>{this.props.title}</strong>.
+                    </DeleteButton>
+                    <EditButton className={"ml-2"} />
                 </div>
-            </a>
+            </div>
 
             <EntryModal
                 entry={this.props.entry}

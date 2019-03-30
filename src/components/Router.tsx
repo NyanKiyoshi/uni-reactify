@@ -6,6 +6,7 @@ import PersonList from "../Person/PersonList";
 import PersonDummy from "../Person/PersonDummy";
 import PageNotFound from '../Pages/PageNotFound';
 import WrappedContent from './WrappedContent';
+import {ToastContainer} from 'react-toastify';
 
 export default class AppRouter extends Component {
     public render(): any {
@@ -23,6 +24,8 @@ export default class AppRouter extends Component {
                         </Switch>
                     </div>
                 </div>
+
+                <ToastContainer />
             </Router>
         );
     }

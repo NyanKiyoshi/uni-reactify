@@ -1,5 +1,6 @@
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
+@import "~react-toastify/scss/main";
 
 @import "layouts/AppRoot";
 @import "layouts/ShoppingListApp";
@@ -8,3 +9,4 @@
 @import "components/AddItemForm";
 @import "components/ListItem";
 @import "components/Navbar";
+@import "components/VerticalDivider";

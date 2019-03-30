@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Component} from 'react';
 import {Modal} from 'react-bootstrap';
-import {IEntryModalProps} from '../interfaces';
+import {IEntryModalProps} from '../../interfaces';
 
 export default class EntryModal extends Component<IEntryModalProps, never> {
     public constructor(props: IEntryModalProps) {

@@ -5,6 +5,12 @@ import {Component} from 'react';
 import { withRouter } from 'react-router-dom';
 import FetchErrorAlert from '../components/FetchErrorAlert';
 import ObjectEntry from '../components/ObjectEntry';
+import {IPersonBody, IPersonListState} from './persons';
+import {IEntry} from '../interfaces';
+import getUrl from '../react-json-forms/utils';
+import {toast} from 'react-toastify';
+
+const PERSONS_ENDPOINT = '/persons';
 
 export default withRouter(class PersonList extends Component<any, IPersonListState> {
     public constructor(props: any) {
@@ -18,11 +24,24 @@ export default withRouter(class PersonList extends Component<any, IPersonListSta
         this.setState({ body: jsonBody });
     }
 
+    public static async onDeleteEntry(entry: IEntry) {
+        const personId = entry['id'];
+
+        await fetch(
+            getUrl(config.baseurl, PERSONS_ENDPOINT + '/' + personId), {
+                method: 'DELETE',
+                headers: {
+                    Accept: 'application/json'
+                }
+            }
+        );
+    }
+
     public render(): any {
         return (
             <JSONGet
                 baseurl={config.baseurl}
-                path='/persons'
+                path={PERSONS_ENDPOINT}
                 onBody={this.onBody.bind(this)}
                 onError={exc => (
                     <FetchErrorAlert history={this.props.history} />
@@ -38,7 +57,7 @@ export default withRouter(class PersonList extends Component<any, IPersonListSta
                                 <ObjectEntry
                                     title={`${value.lastname.toUpperCase()} ${value.firstname}`}
                                     entry={value}
-                                    onDeleteEntry={entry => {}}
+                                    onDeleteEntry={PersonList.onDeleteEntry}
                                     onUpdateEntry={entry => {}}
                                     key={index} />
                             );
