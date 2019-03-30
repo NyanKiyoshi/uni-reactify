@@ -8,12 +8,6 @@ export default class PersonDummy extends Component<any, any> {
         super(props);
     }
 
-
-    componentDidMount(): void {
-        console.log("hii");
-
-    }
-
     public render(): any {
         return <div>hiii</div>;
     }

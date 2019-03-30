@@ -4,7 +4,7 @@ import * as React from 'react';
 import {Component} from 'react';
 import { withRouter } from 'react-router-dom';
 import FetchErrorAlert from '../components/FetchErrorAlert';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import ObjectEntry from '../components/ObjectEntry';
 
 export default withRouter(class PersonList extends Component<any, IPersonListState> {
     public constructor(props: any) {
@@ -31,32 +31,16 @@ export default withRouter(class PersonList extends Component<any, IPersonListSta
                     <div className="card-header">
                         Persons
                     </div>
+
                     <div className="list-group list-group-flush">
                         {this.state.body.map((value, index) => {
                             return (
-                                <a href={`/persons/${value.id}`} className="d-flex list-group-item" key={index}>
-                                    {/* Content */}
-                                    <div className="flex-grow-1">
-                                        {value.lastname.toUpperCase()} {value.firstname}
-                                    </div>
-
-                                    {/* Buttons */}
-                                    <div>
-                                        <button
-                                            role="Delete Entry"
-                                            data-trigger="hover"
-                                            className="btn btn-outline-danger pop">
-                                            <FontAwesomeIcon icon="trash-alt" />
-                                        </button>
-
-                                        <button
-                                            role="Edit Entry"
-                                            data-trigger="hover"
-                                            className="btn btn-outline-primary pop ml-2">
-                                            <FontAwesomeIcon icon="pen" />
-                                        </button>
-                                    </div>
-                                </a>
+                                <ObjectEntry
+                                    title={`${value.lastname.toUpperCase()} ${value.firstname}`}
+                                    entry={value}
+                                    onDeleteEntry={entry => {}}
+                                    onUpdateEntry={entry => {}}
+                                    key={index} />
                             );
                         })}
                     </div>
