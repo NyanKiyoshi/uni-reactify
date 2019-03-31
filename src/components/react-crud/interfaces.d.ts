@@ -5,7 +5,6 @@ interface ICRUDViewListingProps<P extends IEntry> {
     title: string,
     newEntryTitle: JSX.Element,
     endpoint: string,
-    entries: P[],
     TForm: FormStateDispatcher,
     entryTitle: (entry: T) => string
 }

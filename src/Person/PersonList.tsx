@@ -14,11 +14,10 @@ class PersonView extends CRUDViewListing<IPersonBody> {
 
 export default class PersonList extends Component {
     render(): JSX.Element {
-        return <CRUDViewListing
+        return <PersonView
             title='Persons'
             newEntryTitle={<>New Person</>}
             endpoint={PERSONS_ENDPOINT}
-            entries={[]}
             TForm={PersonForm}
             entryTitle={entry => `${entry.firstname.toUpperCase()} ${entry.lastname}`} />
     }

@@ -39,7 +39,8 @@ interface IFormModalProps extends IModalStateManagerProps {
     className?: string,
     title: JSX.Element,
     submitText: string,
-    onSubmit: () => void
+    onSubmit: () => void,
+    onDismiss?: () => void
 }
 
 interface IFormModalState extends IModalStateManagerState {

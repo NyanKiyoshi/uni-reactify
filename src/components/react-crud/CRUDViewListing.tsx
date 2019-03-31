@@ -22,16 +22,6 @@ export default class CRUDViewListing
         }
     }
 
-    componentWillReceiveProps(nextProps: Readonly<ICRUDViewListingProps<T>>, nextContext: any): void {
-        this.setState({
-            entries: this.props.entries
-        })
-    }
-
-    public componentDidMount(): void {
-        this.componentWillReceiveProps(this.props, null);
-    }
-
     public onBody(jsonBody: T[]) : void {
         this.setState({ entries: jsonBody });
     }
@@ -149,6 +139,7 @@ export default class CRUDViewListing
                     submitText={'Create'}
                     visible={this.state.showCreateForm}
                     onSubmit={this.onCreateEntry.bind(this)}
+                    onDismiss={() => this.setState({showCreateForm: false})}
                 >
                     <TForm entry={{}} state={this.state.createForm} />
                 </FormModal>

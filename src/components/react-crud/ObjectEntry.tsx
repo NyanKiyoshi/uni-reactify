@@ -37,15 +37,16 @@ export default class ObjectEntry extends Component<IObjectEntryProps, IObjectEnt
         });
     }
 
-    hideDetails(): void {
-        this.setState({
-            showDetailsModal: false
-        });
-    }
-
     showEditForm(): void {
         this.setState({
             showEditForm: true
+        });
+    }
+
+    dismiss(): void {
+        this.setState({
+            showDetailsModal: false,
+            showEditForm: false
         });
     }
 
@@ -97,7 +98,7 @@ export default class ObjectEntry extends Component<IObjectEntryProps, IObjectEnt
                 fields={["firstname", "lastname"]}
                 show={this.state.showDetailsModal}
                 title={this.props.modalTitle || this.props.title}
-                onHide={this.hideDetails.bind(this)}
+                onHide={this.dismiss.bind(this)}
             />
 
             <FormModal
@@ -105,6 +106,7 @@ export default class ObjectEntry extends Component<IObjectEntryProps, IObjectEnt
                 submitText={'Save'}
                 visible={this.state.showEditForm}
                 onSubmit={this.updateEntry.bind(this)}
+                onDismiss={this.dismiss.bind(this)}
             >
                 {this.props.editForm}
             </FormModal>

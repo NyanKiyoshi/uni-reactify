@@ -13,19 +13,26 @@ export default class FormModal extends ModalStateManager<IFormModalProps, IFormM
         };
     }
 
+    public async onDismiss() {
+        if (this.props.onDismiss) {
+            this.props.onDismiss();
+        }
+
+        this.dismiss();
+    }
+
     public async onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
         event.stopPropagation();
 
         await this.props.onSubmit();
-
-        this.dismiss();
+        await this.onDismiss();
     }
 
     public render(): JSX.Element {
         return (
             <Modal show={this.state.isOpened}
-                   onHide={this.dismiss.bind(this)}
+                   onHide={this.onDismiss.bind(this)}
                    className={this.props.className}
             >
                 <Form onSubmit={this.onSubmit.bind(this)}>
@@ -40,7 +47,7 @@ export default class FormModal extends ModalStateManager<IFormModalProps, IFormM
                     </Modal.Body>
 
                     <Modal.Footer>
-                        <Button variant={'outline-secondary'} onClick={this.dismiss.bind(this)}>
+                        <Button variant={'outline-secondary'} onClick={this.onDismiss.bind(this)}>
                             Cancel
                         </Button>
 
