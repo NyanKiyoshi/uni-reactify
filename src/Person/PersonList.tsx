@@ -7,7 +7,7 @@ import FetchErrorAlert from '../components/FetchErrorAlert';
 import ObjectEntry from '../components/ObjectEntry';
 import {IPersonBody, IPersonListState} from './persons';
 import {IEntry} from '../interfaces';
-import getUrl from '../react-json-forms/utils';
+import {getUrl, sendRequest} from '../react-json-forms/utils';
 import PersonForm from './PersonForm';
 
 const PERSONS_ENDPOINT = '/persons';
@@ -42,8 +42,29 @@ export default withRouter(class PersonList extends Component<any, IPersonListSta
         }));
     }
 
-    public async onUpdateEntry() {
-        console.log("Submitted:", this.state.updateForm);
+    public async onUpdateEntry(entry: IEntry, index: number) {
+        const personId = entry['id'];
+        const formData = this.state.updateForm;
+
+        await sendRequest(
+            getUrl(config.baseurl, PERSONS_ENDPOINT + '/' + personId), {
+                method: 'PUT',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            }
+        );
+
+        this.setState((prevState) => ({
+            body: prevState.body.map((value, stateIndex) => {
+                if (stateIndex === index) {
+                    return Object.assign({...value}, formData);
+                }
+                return value;
+            })
+        }));
     }
 
     public render(): any {

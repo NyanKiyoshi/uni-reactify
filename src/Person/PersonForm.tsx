@@ -1,43 +1,27 @@
 import * as React from 'react';
-import {Component} from 'react';
-import {IPersonBody, IPersonFormProps, IPersonFormState} from './persons';
+import {IPersonFormProps, IPersonFormState} from './persons';
 import {Row, Form, Col} from 'react-bootstrap/lib';
+import FormStateDispatcher from '../components/FormStateDispatcher';
 
-export default class PersonForm extends Component<IPersonFormProps, IPersonFormState> {
+export default class PersonForm extends FormStateDispatcher<IPersonFormProps, IPersonFormState> {
     public constructor(props: IPersonFormProps) {
         super(props);
 
         this.state = {
-            firstName: '',
-            lastName: ''
+            firstname: '',
+            lastname: ''
         }
-    }
-
-    public handleInputChange(event: any) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        this.setState({
-            [name]: value
-        });
     }
 
     componentWillReceiveProps(nextProps: Readonly<IPersonFormProps>, nextContext: any): void {
         this.setState({
-            firstName: this.state.firstName || nextProps.entry.firstname || '',
-            lastName: this.state.lastName || nextProps.entry.lastname || ''
+            firstname: this.state.firstname || nextProps.entry.firstname || '',
+            lastname: this.state.lastname || nextProps.entry.lastname || ''
         });
     }
 
     componentDidMount(): void {
         this.componentWillReceiveProps(this.props, null);
-    }
-
-    componentDidUpdate(
-        prevProps: Readonly<IPersonFormProps>, prevState: Readonly<IPersonFormState>, snapshot?: any): void {
-
-        Object.assign(this.props.state, this.state);
     }
 
     public render(): any {
@@ -51,10 +35,10 @@ export default class PersonForm extends Component<IPersonFormProps, IPersonFormS
 
                 <Col sm={8}>
                     <Form.Control
-                        name={'firstName'}
+                        name={'firstname'}
                         placeholder="First Name"
                         onChange={onChange}
-                        value={this.state.firstName}
+                        value={this.state.firstname}
                         required
                     />
                 </Col>
@@ -67,10 +51,10 @@ export default class PersonForm extends Component<IPersonFormProps, IPersonFormS
 
                 <Col sm={8}>
                     <Form.Control
-                        name={'lastName'}
+                        name={'lastname'}
                         placeholder="Last Name"
                         onChange={onChange}
-                        value={this.state.lastName}
+                        value={this.state.lastname}
                         required
                     />
                 </Col>

@@ -1,6 +1,6 @@
 import {Component} from 'react';
 import * as React from 'react';
-import getUrl from '../utils';
+import {getUrl} from '../utils';
 
 export default class JSONGet extends Component<IJSONFormProps, IJSONFormState> {
     public constructor(props: IJSONFormProps) {

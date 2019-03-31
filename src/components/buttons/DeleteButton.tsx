@@ -35,13 +35,7 @@ export default class DeleteButton extends Component<IDeleteButtonProps, IDeleteB
     }
 
     public async onConfirmDeletion() {
-        try {
-            await this.props.onDelete();
-        } catch (e) {
-            toast.error('Failed to delete the entry!');
-            throw e;
-        }
-        toast('Entry deleted!');
+        await this.props.onDelete();
     }
 
     public render(): JSX.Element {

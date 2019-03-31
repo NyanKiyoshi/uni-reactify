@@ -6,15 +6,14 @@ interface IPersonBody extends IEntry {
     lastname: string,
 }
 
-interface IPersonListState {
+interface IPersonListState extends IEntry {
     body: IPersonBody[],
     updateForm: Partial<IPersonFormState>
 }
 
-interface IPersonFormState {
-    firstName: string,
-    lastName: string,
-    [key: string]: any;
+interface IPersonFormState extends IEntry {
+    firstname: string,
+    lastname: string,
 }
 
 interface IPersonFormProps {

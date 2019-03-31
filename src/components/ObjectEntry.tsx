@@ -5,6 +5,7 @@ import DeleteButton from './buttons/DeleteButton';
 import EditButton from './buttons/EditButton';
 import Divider from './Divider';
 import FormModal from './modals/FormModal';
+import {toast} from 'react-toastify';
 
 interface IObjectEntryProps {
     title: string,
@@ -54,12 +55,28 @@ export default class ObjectEntry extends Component<IObjectEntryProps, IObjectEnt
         });
     }
 
+    static notifyError(action: string): void {
+        toast.error(`Failed to ${action} the entry!`);
+    }
+
     async deleteEntry() {
-        await this.props.onDeleteEntry(this.props.entry, this.props.index);
+        try {
+            await this.props.onDeleteEntry(this.props.entry, this.props.index);
+            toast('Entry deleted!');
+        } catch (e) {
+            ObjectEntry.notifyError('delete');
+            throw e;
+        }
     }
 
     async updateEntry() {
-        await this.props.onUpdateEntry(this.props.entry, this.props.index);
+        try {
+            await this.props.onUpdateEntry(this.props.entry, this.props.index);
+            toast('Entry updated!');
+        } catch (e) {
+            ObjectEntry.notifyError('update');
+            throw e;
+        }
     }
 
     render(): any {
