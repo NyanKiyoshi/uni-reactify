@@ -8,7 +8,9 @@ interface IPersonBody extends IEntry {
 
 interface IPersonListState extends IEntry {
     body: IPersonBody[],
-    updateForm: Partial<IPersonFormState>
+    updateForm: Partial<IPersonFormState>,
+    createForm: Partial<IPersonFormState>,
+    showCreateForm: boolean
 }
 
 interface IPersonFormState extends IEntry {

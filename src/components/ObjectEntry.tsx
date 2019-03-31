@@ -49,12 +49,6 @@ export default class ObjectEntry extends Component<IObjectEntryProps, IObjectEnt
         });
     }
 
-    hideEditForm(): void {
-        this.setState({
-            showEditForm: false
-        });
-    }
-
     static notifyError(action: string): void {
         toast.error(`Failed to ${action} the entry!`);
     }

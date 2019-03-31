@@ -15,7 +15,7 @@ export default class AppRouter extends Component {
                 <div id="content">
                     <Header/>
 
-                    <div className="container mt-2 mb-2">
+                    <div className="container mt-4 mb-4">
                         <Switch>
                             <Route path="/" exact component={WrappedContent(IndexPage)} />
                             <Route path="/persons/" component={WrappedContent(PersonList)} exact />
