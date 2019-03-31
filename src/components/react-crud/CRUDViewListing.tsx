@@ -74,7 +74,7 @@ export default class CRUDViewListing
         }));
     }
 
-    public async onCreateEntry() {
+    public async createEntry() {
         const formData = this.state.createForm;
 
         const newItem : T = await (await sendRequest(
@@ -91,6 +91,16 @@ export default class CRUDViewListing
         this.setState((prevState) => ({
             entries: [...prevState.entries, newItem]
         }));
+    }
+
+    public async onCreateEntry() {
+        try {
+            await this.createEntry();
+            toast("Entry created!");
+        } catch (e) {
+            toast.error("Failed to create the entry.");
+            throw e;
+        }
     }
 
     public render(): any {
