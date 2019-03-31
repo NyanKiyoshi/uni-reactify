@@ -1,10 +1,10 @@
 import {Component, default as React} from 'react';
-import EntryModal from './modals/EntryModal';
-import {IEntry} from '../interfaces';
-import DeleteButton from './buttons/DeleteButton';
-import EditButton from './buttons/EditButton';
-import Divider from './Divider';
-import FormModal from './modals/FormModal';
+import EntryModal from '../modals/EntryModal';
+import {IEntry} from '../../interfaces';
+import DeleteButton from '../buttons/DeleteButton';
+import EditButton from '../buttons/EditButton';
+import Divider from '../Divider';
+import FormModal from '../modals/FormModal';
 import {toast} from 'react-toastify';
 
 interface IObjectEntryProps {
