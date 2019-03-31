@@ -1,32 +1,48 @@
-interface IItem {
-    name: string
-    quantity: number
-    cost: number
+import {ButtonVariant} from 'react-bootstrap/lib/Button';
+
+export interface IEntry {
+    [key: string]: any;
 }
 
-interface IItemListAppState {
-    items: IItem[]
+interface IEntryModalProps {
+    entry: IEntry,
+    fields: string[],
+    show: boolean,
+    onHide: () => void,
+    title: string
 }
 
-interface IItemsListProps {
-    items: IItem[];
-    onRemoveItem(index: number): void;
+interface IModalStateManagerProps {
+    visible: boolean,
 }
 
-interface IListItemProps {
-    item: IItem;
-    index: number;
-    onRemove(index: number): void;
+interface IModalStateManagerState {
+    isOpened: boolean
 }
 
-interface IListItemState {
-    item: IItem;
+interface IConfirmModalProps extends IModalStateManagerProps {
+    cancelText: string,
+    className: string,
+    confirmText?: string,
+    onConfirm: () => void,
+    onClose?: () => void,
+    showCancelButton: boolean,
+    title: string,
+    confirmBootstrapStyle: ButtonVariant,
+    keyboard?: boolean
 }
 
-interface IAddItemFormProps {
-    onAddItem(item: IItem): void;
+interface IConfirmModalState extends IModalStateManagerState {
 }
 
-interface IAddItemFormState {
-    currentText: string;
+interface IFormModalProps extends IModalStateManagerProps {
+    className?: string,
+    title: JSX.Element,
+    submitText: string,
+    onSubmit: () => void,
+    onDismiss?: () => void
+}
+
+interface IFormModalState extends IModalStateManagerState {
+
 }
