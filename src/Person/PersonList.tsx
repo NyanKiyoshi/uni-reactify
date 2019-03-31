@@ -8,7 +8,7 @@ import ObjectEntry from '../components/ObjectEntry';
 import {IPersonBody, IPersonListState} from './persons';
 import {IEntry} from '../interfaces';
 import getUrl from '../react-json-forms/utils';
-import {toast} from 'react-toastify';
+import PersonForm from './PersonForm';
 
 const PERSONS_ENDPOINT = '/persons';
 
@@ -16,7 +16,8 @@ export default withRouter(class PersonList extends Component<any, IPersonListSta
     public constructor(props: any) {
         super(props);
         this.state = {
-            body: []
+            body: [],
+            updateForm: {}
         }
     }
 
@@ -24,7 +25,7 @@ export default withRouter(class PersonList extends Component<any, IPersonListSta
         this.setState({ body: jsonBody });
     }
 
-    public static async onDeleteEntry(entry: IEntry) {
+    public async onDeleteEntry(entry: IEntry, index: number) {
         const personId = entry['id'];
 
         await fetch(
@@ -35,6 +36,14 @@ export default withRouter(class PersonList extends Component<any, IPersonListSta
                 }
             }
         );
+
+        this.setState((prevState) => ({
+            body: prevState.body.filter((i, idx) => idx !== index)
+        }));
+    }
+
+    public async onUpdateEntry() {
+        console.log("Submitted:", this.state.updateForm);
     }
 
     public render(): any {
@@ -57,9 +66,12 @@ export default withRouter(class PersonList extends Component<any, IPersonListSta
                                 <ObjectEntry
                                     title={`${value.lastname.toUpperCase()} ${value.firstname}`}
                                     entry={value}
-                                    onDeleteEntry={PersonList.onDeleteEntry}
-                                    onUpdateEntry={entry => {}}
-                                    key={index} />
+                                    onDeleteEntry={this.onDeleteEntry.bind(this)}
+                                    onUpdateEntry={this.onUpdateEntry.bind(this)}
+                                    editForm={<PersonForm entry={value} state={this.state.updateForm} />}
+                                    key={index}
+                                    index={index}
+                                />
                             );
                         })}
                     </div>

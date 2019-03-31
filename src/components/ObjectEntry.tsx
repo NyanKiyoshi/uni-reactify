@@ -4,41 +4,62 @@ import {IEntry} from '../interfaces';
 import DeleteButton from './buttons/DeleteButton';
 import EditButton from './buttons/EditButton';
 import Divider from './Divider';
+import FormModal from './modals/FormModal';
 
 interface IObjectEntryProps {
     title: string,
     modalTitle?: string,
     entry: IEntry,
-    onDeleteEntry: (entry: IEntry) => void,
-    onUpdateEntry: (entry: IEntry, formData: {}) => void,
+    onDeleteEntry: (entry: IEntry, index: number) => void,
+    onUpdateEntry: (entry: IEntry, index: number) => void,
+    editForm: JSX.Element,
+    index: number
 }
 
 interface IObjectEntryState {
-    showModal: boolean,
+    showDetailsModal: boolean,
+    showEditForm: boolean,
 }
 
 export default class ObjectEntry extends Component<IObjectEntryProps, IObjectEntryState> {
     constructor(props: IObjectEntryProps) {
         super(props);
         this.state = {
-            showModal: false
+            showDetailsModal: false,
+            showEditForm: false
         }
     }
 
     showDetails(): void {
         this.setState({
-            showModal: true
+            showDetailsModal: true
         });
     }
 
     hideDetails(): void {
         this.setState({
-            showModal: false
+            showDetailsModal: false
+        });
+    }
+
+    showEditForm(): void {
+        this.setState({
+            showEditForm: true
+        });
+    }
+
+    hideEditForm(): void {
+        this.setState({
+            showEditForm: false
         });
     }
 
     async deleteEntry() {
-        await this.props.onDeleteEntry(this.props.entry);
+        await this.props.onDeleteEntry(this.props.entry, this.props.index);
+    }
+
+    async updateEntry() {
+        await this.props.onUpdateEntry(this.props.entry, this.props.index);
     }
 
     render(): any {
@@ -56,17 +77,26 @@ export default class ObjectEntry extends Component<IObjectEntryProps, IObjectEnt
                     <DeleteButton onDelete={this.deleteEntry.bind(this)}>
                         This will permanently delete <strong>{this.props.title}</strong>.
                     </DeleteButton>
-                    <EditButton className={"ml-2"} />
+                    <EditButton className={"ml-2"} onClick={this.showEditForm.bind(this)} />
                 </div>
             </div>
 
             <EntryModal
                 entry={this.props.entry}
                 fields={["firstname", "lastname"]}
-                show={this.state.showModal}
+                show={this.state.showDetailsModal}
                 title={this.props.modalTitle || this.props.title}
                 onHide={this.hideDetails.bind(this)}
             />
+
+            <FormModal
+                title={<>Edit <strong>{this.props.title}</strong></>}
+                submitText={'Save'}
+                visible={this.state.showEditForm}
+                onSubmit={this.updateEntry.bind(this)}
+            >
+                {this.props.editForm}
+            </FormModal>
         </>
     }
 }

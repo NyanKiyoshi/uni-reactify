@@ -1,28 +1,10 @@
 import * as React from 'react';
-import {Component} from 'react';
 import {Modal} from 'react-bootstrap';
-import {IEntryModalProps} from '../../interfaces';
+import {IConfirmModalProps, IConfirmModalState, IEntryModalProps} from '../../interfaces';
 import {Button} from 'react-bootstrap/lib';
-import {ButtonVariant} from 'react-bootstrap/lib/Button';
+import ModalStateManager from './ModalStateManager';
 
-interface IConfirmModalProps {
-    cancelText: string,
-    className: string,
-    confirmText?: string,
-    onConfirm: () => void,
-    onClose?: () => void,
-    showCancelButton: boolean,
-    title: string,
-    visible: boolean,
-    confirmBootstrapStyle: ButtonVariant,
-    keyboard?: boolean
-}
-
-interface IConfirmModalState {
-    isOpened: boolean
-}
-
-export default class ConfirmModal extends Component<IConfirmModalProps, IConfirmModalState> {
+export default class ConfirmModal extends ModalStateManager<IConfirmModalProps, IConfirmModalState> {
     public static defaultProps : Partial<IConfirmModalProps> = {
         title: 'Are you sure?',
         cancelText: 'Cancel',
@@ -36,23 +18,12 @@ export default class ConfirmModal extends Component<IConfirmModalProps, IConfirm
         super(props);
 
         this.state = {
-            isOpened: props.visible
+            isOpened: false
         };
     }
 
-    public onButtonClick() {
-        // Since the modal is inside the button click events will propagate up.
-        if (!this.state.isOpened) {
-            this.setState({
-                isOpened: true
-            });
-        }
-    }
-
     public onClose() {
-        this.setState({
-            isOpened: false
-        });
+        this.dismiss();
 
         if (typeof this.props.onClose !== 'undefined') {
             this.props.onClose();
@@ -65,12 +36,6 @@ export default class ConfirmModal extends Component<IConfirmModalProps, IConfirm
         if (typeof this.props.onConfirm !== 'undefined') {
             this.props.onConfirm();
         }
-    }
-
-    componentWillReceiveProps(nextProps: Readonly<IConfirmModalProps>, nextContext: any): void {
-        this.setState({
-            isOpened: nextProps.visible
-        });
     }
 
     public render(): JSX.Element {
