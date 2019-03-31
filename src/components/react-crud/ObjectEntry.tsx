@@ -1,6 +1,6 @@
 import {Component, default as React} from 'react';
 import EntryModal from '../modals/EntryModal';
-import {IEntry} from '../../interfaces';
+import {IEntry, TModalDetailsJSXElement} from '../../interfaces';
 import DeleteButton from '../buttons/DeleteButton';
 import EditButton from '../buttons/EditButton';
 import Divider from '../Divider';
@@ -13,6 +13,7 @@ interface IObjectEntryProps {
     entry: IEntry,
     onDeleteEntry: (entry: IEntry, index: number) => void,
     onUpdateEntry: (entry: IEntry, index: number) => void,
+    detailsTemplate?: TModalDetailsJSXElement,
     editForm: JSX.Element,
     index: number
 }
@@ -99,6 +100,7 @@ export default class ObjectEntry extends Component<IObjectEntryProps, IObjectEnt
                 show={this.state.showDetailsModal}
                 title={this.props.modalTitle || this.props.title}
                 onHide={this.dismiss.bind(this)}
+                detailsTemplate={this.props.detailsTemplate}
             />
 
             <FormModal

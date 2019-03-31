@@ -1,4 +1,4 @@
-import {IEntry} from '../../interfaces';
+import {IEntry, TModalDetailsJSXElement} from '../../interfaces';
 import FormStateDispatcher from '../FormStateDispatcher';
 
 interface ICRUDViewListingProps<P extends IEntry> {
@@ -6,7 +6,8 @@ interface ICRUDViewListingProps<P extends IEntry> {
     newEntryTitle: JSX.Element,
     endpoint: string,
     TForm: FormStateDispatcher,
-    entryTitle: (entry: T) => string
+    entryTitle: (entry: T) => string,
+    detailsTemplate?: TModalDetailsJSXElement
 }
 
 

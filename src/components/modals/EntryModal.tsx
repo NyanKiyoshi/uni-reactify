@@ -8,6 +8,23 @@ export default class EntryModal extends Component<IEntryModalProps, never> {
         super(props);
     }
 
+    private renderPropsTable() {
+        return <table className="w-100">
+            <tbody>
+            {this.props.fields.map((key, index) => {
+                const value = this.props.entry[key];
+                if (value) {
+                    return <tr key={index}>
+                        <td className="font-weight-bold">{key}</td>
+                        <td>{value}</td>
+                    </tr>
+                }
+                return;
+            })}
+            </tbody>
+        </table>
+    }
+
     public render(): any {
         return <Modal
                 show={this.props.show}
@@ -21,20 +38,11 @@ export default class EntryModal extends Component<IEntryModalProps, never> {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <table className="w-100">
-                    <tbody>
-                    {this.props.fields.map((key, index) => {
-                        const value = this.props.entry[key];
-                        if (value) {
-                            return <tr key={index}>
-                                <td className="font-weight-bold">{key}</td>
-                                <td>{value}</td>
-                            </tr>
-                        }
-                        return;
-                    })}
-                    </tbody>
-                </table>
+                {
+                    this.props.detailsTemplate
+                        ? this.props.detailsTemplate(this.props.entry, this.renderPropsTable)
+                        : this.renderPropsTable()
+                }
             </Modal.Body>
         </Modal>;
     }

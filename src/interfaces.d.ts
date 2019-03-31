@@ -1,5 +1,8 @@
 import {ButtonVariant} from 'react-bootstrap/lib/Button';
 
+type TModalDetailsJSXElement =
+    (entry: IEntry, props: () => JSX.Element) => JSX.Element;
+
 export interface IEntry {
     [key: string]: any;
 }
@@ -9,7 +12,8 @@ interface IEntryModalProps {
     fields: string[],
     show: boolean,
     onHide: () => void,
-    title: string
+    title: string,
+    detailsTemplate?: TModalDetailsJSXElement
 }
 
 interface IModalStateManagerProps {

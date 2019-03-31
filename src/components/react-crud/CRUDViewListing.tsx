@@ -136,6 +136,7 @@ export default class CRUDViewListing
                                     onDeleteEntry={this.onDeleteEntry.bind(this)}
                                     onUpdateEntry={this.onUpdateEntry.bind(this)}
                                     editForm={<TForm entry={value} state={this.state.updateForm} />}
+                                    detailsTemplate={this.props.detailsTemplate}
                                     key={index}
                                     index={index}
                                 />

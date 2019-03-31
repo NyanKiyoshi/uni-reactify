@@ -19,6 +19,7 @@ export default class PersonList extends Component {
             newEntryTitle={<>New Person</>}
             endpoint={PERSONS_ENDPOINT}
             TForm={PersonForm}
-            entryTitle={entry => `${entry.firstname.toUpperCase()} ${entry.lastname}`} />
+            entryTitle={entry => `${entry.firstname.toUpperCase()} ${entry.lastname}`}
+        />
     }
 }
