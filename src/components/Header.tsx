@@ -6,7 +6,7 @@ export default function () {
         <div>
             <nav className="navbar navbar-expand-md navbar-dark bg-dark">
                 <div className="container">
-                    <a className="navbar-brand" href="/">Index</a>
+                    <Link className="navbar-brand nav-link" to={'/'}>Index</Link>
 
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#nav" aria-controls="nav"
