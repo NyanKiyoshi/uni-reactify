@@ -1,5 +1,6 @@
 import {IEntry, TModalDetailsJSXElement} from '../../interfaces';
 import FormStateDispatcher from '../FormStateDispatcher';
+import {TCustomLink} from "./ObjectEntry";
 
 interface ICRUDViewListingProps<P extends IEntry> {
     title: string,
@@ -8,7 +9,8 @@ interface ICRUDViewListingProps<P extends IEntry> {
     TForm: FormStateDispatcher,
     entryTitle: (entry: T) => string,
     detailsTemplate?: TModalDetailsJSXElement,
-    fields: string[]
+    fields: string[],
+    customDetailsLink?: TCustomLink
 }
 
 

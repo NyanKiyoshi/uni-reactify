@@ -2,6 +2,7 @@ import * as React from 'react';
 import {IMenuFormProps, IMenuFormState} from './menus';
 import {Row, Form, Col} from 'react-bootstrap/lib';
 import FormStateDispatcher from '../components/FormStateDispatcher';
+import {IEntry} from "../interfaces";
 
 export default class MenuForm extends FormStateDispatcher<IMenuFormProps, IMenuFormState> {
     public constructor(props: IMenuFormProps) {
@@ -10,6 +11,13 @@ export default class MenuForm extends FormStateDispatcher<IMenuFormProps, IMenuF
         this.state = {
             titre: ''
         }
+    }
+
+    public static async onSuccessUpdate(entry: IEntry): Promise<any> {
+        console.log("yeya");
+    }
+
+    public static async onSuccessCreate(entry: IEntry): Promise<any> {
     }
 
     componentWillReceiveProps(nextProps: Readonly<IMenuFormProps>, nextContext: any): void {

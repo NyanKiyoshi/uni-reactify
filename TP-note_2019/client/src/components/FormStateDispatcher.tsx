@@ -17,6 +17,14 @@ export default class FormStateDispatcher<P extends IEntry, S extends IEntry> ext
         });
     }
 
+    public static async onSuccessUpdate(entry: IEntry) {
+
+    }
+
+    public static async onSuccessCreate(entry: IEntry) {
+
+    }
+
     componentDidUpdate(
         prevProps: Readonly<P>, prevState: Readonly<S>, snapshot?: any): void {
 

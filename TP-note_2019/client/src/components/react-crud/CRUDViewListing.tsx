@@ -64,6 +64,8 @@ export default class CRUDViewListing
             }
         );
 
+        await this.props.TForm.onSuccessUpdate(formData);
+
         this.setState((prevState) => ({
             entries: prevState.entries.map((value, stateIndex) => {
                 if (stateIndex === index) {
@@ -87,6 +89,8 @@ export default class CRUDViewListing
                 body: JSON.stringify(formData)
             }
         )).json();
+
+        await this.props.TForm.onSuccessCreate(formData);
 
         this.setState((prevState) => ({
             entries: [...prevState.entries, newItem]
@@ -138,6 +142,7 @@ export default class CRUDViewListing
                                     editForm={<TForm entry={value} state={this.state.updateForm} />}
                                     detailsTemplate={this.props.detailsTemplate}
                                     fields={this.props.fields}
+                                    customLink={this.props.customDetailsLink}
                                     key={index}
                                     index={index}
                                 />

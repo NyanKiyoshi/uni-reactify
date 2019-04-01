@@ -7,6 +7,8 @@ import Divider from '../Divider';
 import FormModal from '../modals/FormModal';
 import {toast} from 'react-toastify';
 
+export type TCustomLink = (entry: IEntry, title: string) => JSX.Element;
+
 interface IObjectEntryProps {
     title: string,
     modalTitle?: string,
@@ -16,7 +18,8 @@ interface IObjectEntryProps {
     detailsTemplate?: TModalDetailsJSXElement,
     editForm: JSX.Element,
     index: number,
-    fields: string[]
+    fields: string[],
+    customLink?: TCustomLink
 }
 
 interface IObjectEntryState {
@@ -80,16 +83,22 @@ export default class ObjectEntry extends Component<IObjectEntryProps, IObjectEnt
         return <>
             <div className="d-flex list-group-item">
                 {/* Content */}
-                <a href="#" className="flex-grow-1" onClick={this.showDetails.bind(this)}>
-                    {this.props.title}
-                </a>
+
+                {this.props.customLink
+                    ? this.props.customLink(this.props.entry, this.props.title)
+                    : (
+                        <a href="#" className="flex-grow-1" onClick={this.showDetails.bind(this)}>
+                            {this.props.title}
+                        </a>
+                    )
+                }
 
                 <Divider />
 
                 {/* Buttons */}
                 <div>
                     <DeleteButton onDelete={this.deleteEntry.bind(this)}>
-                        This will permanently delete <strong>{this.props.title}</strong>.
+                        Cela supprimera <strong>{this.props.title}</strong> de manière permanante.
                     </DeleteButton>
                     <EditButton className={"ml-2"} onClick={this.showEditForm.bind(this)} />
                 </div>
@@ -105,7 +114,7 @@ export default class ObjectEntry extends Component<IObjectEntryProps, IObjectEnt
             />
 
             <FormModal
-                title={<>Edit <strong>{this.props.title}</strong></>}
+                title={<>Modifier <strong>{this.props.title}</strong></>}
                 submitText={'Sauvegarder'}
                 visible={this.state.showEditForm}
                 onSubmit={this.updateEntry.bind(this)}
