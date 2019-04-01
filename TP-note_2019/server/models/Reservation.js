@@ -1,5 +1,6 @@
-const Sequelize = require('sequelize');
+const Sequelize = require("sequelize");
 const db = require("../db");
+const Menu = require("./Menu");
 
 const Reservation = db.define("Reservation", {
     nom: {
@@ -11,5 +12,8 @@ const Reservation = db.define("Reservation", {
         allowNull: false
     }
 });
+
+Menu.hasMany(Reservation, {as: "reservations", onDelete: "CASCADE"});
+Reservation.belongsTo(Menu, { onDelete: "CASCADE" });
 
 module.exports = Reservation;
