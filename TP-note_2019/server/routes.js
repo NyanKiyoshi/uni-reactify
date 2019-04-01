@@ -29,8 +29,8 @@ app.use("/", RESTFulManager({
     }],
 
     formFields: [
-        "type",
-        "address"
+        "nom",
+        "creneau"
     ],
     filterFields: [
         "type"

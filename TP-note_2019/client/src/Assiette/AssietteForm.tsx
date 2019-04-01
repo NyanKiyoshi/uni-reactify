@@ -59,7 +59,7 @@ export default class AssietteForm extends FormStateDispatcher<IAssietteFormProps
                 </Form.Label>
 
                 <Col sm={8}>
-                    <Form.Control as="select">
+                    <Form.Control as="select" name={'type'} value={this.state.type} onChange={onChange}>
                         <option>entree</option>
                         <option>plat</option>
                         <option>dessert</option>

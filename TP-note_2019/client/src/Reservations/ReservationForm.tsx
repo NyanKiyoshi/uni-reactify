@@ -23,7 +23,7 @@ export default class ReservationForm extends FormStateDispatcher<IReservationFor
     componentWillReceiveProps(nextProps: Readonly<IReservationFormProps>, nextContext: any): void {
         this.setState({
             nom: this.state.nom || nextProps.entry.nom || '',
-            creneau: this.state.creneau || nextProps.entry.creneau || '0',
+            creneau: this.state.creneau || nextProps.entry.creneau || 'midi',
         });
     }
 
@@ -37,12 +37,12 @@ export default class ReservationForm extends FormStateDispatcher<IReservationFor
         return <>
             <Form.Group as={Row}>
                 <Form.Label column>
-                    Titre
+                    Nom et Prénom
                 </Form.Label>
 
                 <Col sm={8}>
                     <Form.Control
-                        name={'Nom et Prénom'}
+                        name={'nom'}
                         placeholder="Votre nom et prénom"
                         onChange={onChange}
                         value={this.state.nom}
@@ -57,7 +57,7 @@ export default class ReservationForm extends FormStateDispatcher<IReservationFor
                 </Form.Label>
 
                 <Col sm={8}>
-                    <Form.Control as="select">
+                    <Form.Control as="select" name={'creneau'} onChange={onChange} value={this.state.creneau}>
                         <option>midi</option>
                         <option>soir</option>
                     </Form.Control>
