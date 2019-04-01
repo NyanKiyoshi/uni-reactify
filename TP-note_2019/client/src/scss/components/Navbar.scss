@@ -1,0 +1,5 @@
+.nav-link, .navbar-toggler {
+    &:focus, &:active {
+        outline: none;
+    }
+}
