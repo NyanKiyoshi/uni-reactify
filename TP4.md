@@ -15,3 +15,9 @@ Pour commencer, ajouter une route correspondant à chacun des TP précédents :
 - Clock
 - Liste d'items
 - Liste de courses
+
+Vous remarquerez que l'état des listes est détruit à chaque fois que le composant correspondant quitte l'interface, et réinitialisé à chaque fois qu'il intègre l'interface.
+
+Modifiez vos composants liste (items et courses) pour que leurs données soient sauvegardées dans le navigateur avant leur suppression, et restaurées après leur insertion.
+
+Indices : `localStorage.getItem`, `localStorage.setItem`, `JSON.stringify`, `JSON.parse`
