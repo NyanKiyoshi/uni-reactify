@@ -1,9 +1,9 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
-const Assiete = require("./Assiete");
+const Assiette = require("./Assiette");
 const Menu = require("./Menu");
 
-const MenuHasAssiete = db.define("MenuHasAssiete", {
+const MenuHasAssiette = db.define("MenuHasAssiette", {
     assocId: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -15,31 +15,31 @@ const MenuHasAssiete = db.define("MenuHasAssiete", {
         allowNull: false,
         field: "menu_id"
     },
-    assieteId: {
+    assietteId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        field: "assiete_id"
+        field: "assiette_id"
     }
 }, {
-    tableName: "tbl_menu_has_assiete_assoc",
+    tableName: "tbl_menu_has_assiette_assoc",
     indexes: [{
         unique: true,
-        fields: ["menu_id", "assiete_id"]
+        fields: ["menu_id", "assiette_id"]
     }]
 });
 
-Menu.belongsToMany(Assiete, {
-    as: "assietes",
-    through: MenuHasAssiete,
+Menu.belongsToMany(Assiette, {
+    as: "assiettes",
+    through: MenuHasAssiette,
     foreignKey: "menuId",
     sourceKey: "menuId",
     onDelete: "CASCADE"
 });
-Assiete.belongsToMany(Menu, {
+Assiette.belongsToMany(Menu, {
     as: "menus",
-    through: MenuHasAssiete,
-    foreignKey: "assieteId",
+    through: MenuHasAssiette,
+    foreignKey: "assietteId",
     targetKey: "menuId"
 });
 
-module.exports = MenuHasAssiete;
+module.exports = MenuHasAssiette;

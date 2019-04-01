@@ -1,10 +1,11 @@
 const Sequelize = require('sequelize');
 const db = require("../db");
 
-const Assiete = db.define("Assiete", {
+const Assiette = db.define("Assiette", {
     titre: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true
     },
     type: {
         type: Sequelize.ENUM("entree", "plat", "dessert"),
@@ -16,4 +17,4 @@ const Assiete = db.define("Assiete", {
     }
 });
 
-module.exports = Assiete;
+module.exports = Assiette;
