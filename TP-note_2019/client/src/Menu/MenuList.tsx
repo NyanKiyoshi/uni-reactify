@@ -6,10 +6,11 @@ import CRUDViewListing from '../components/react-crud/CRUDViewListing';
 import {IEntry} from "../interfaces";
 import {Link} from "react-router-dom";
 import Divider from "../components/Divider";
+import * as queryString from "querystring";
 
-const PERSONS_ENDPOINT = '/menus';
+const ENDPOINT = '/menus';
 
-class PersonView extends CRUDViewListing<IMenuBody> {
+class MenuView extends CRUDViewListing<IMenuBody> {
     public constructor(props: any) {
         super(props);
     }
@@ -17,22 +18,27 @@ class PersonView extends CRUDViewListing<IMenuBody> {
 
 export default class MenuList extends Component {
     public renderCustomDetailsLink(entry: IEntry, title: string): JSX.Element {
+        const menuQS = queryString.stringify({
+            menuID: entry.id,
+            menuTitle: title
+        });
+
         return <div className="d-flex flex-grow-1 children-center">
 
             <div className="flex-grow-1">{title}</div>
 
-            <Link to={`/assiettes?menu=${entry.id}`}>Assiettes</Link>
+            <Link to={`/assiettes?${menuQS}`}>Assiettes</Link>
             <Divider />
-            <Link to={`/reservations?menu=${entry.id}`}>Reservations</Link>
+            <Link to={`/reservations?${menuQS}`}>Reservations</Link>
 
         </div>
     }
 
     public render(): JSX.Element {
-        return <PersonView
+        return <MenuView
             title='Menus'
             newEntryTitle={<>Nouveau Menu</>}
-            endpoint={PERSONS_ENDPOINT}
+            endpoint={ENDPOINT}
             TForm={MenuForm}
             fields={['titre']}
             entryTitle={entry => `${entry.titre}`}

@@ -5,6 +5,7 @@ import Header from "./Header";
 import MenuList from '../Menu/MenuList';
 import PageNotFound from '../Pages/PageNotFound';
 import {ToastContainer} from 'react-toastify';
+import AssietteList from "../Assiette/AssietteList";
 
 export default class AppRouter extends Component {
     public render(): any {
@@ -17,6 +18,7 @@ export default class AppRouter extends Component {
                         <Switch>
                             <Route path="/" exact component={IndexPage} />
                             <Route path="/menus/" component={MenuList} exact />
+                            <Route path="/assiettes/" component={AssietteList} />
                             <Route component={PageNotFound} />
                         </Switch>
                     </div>

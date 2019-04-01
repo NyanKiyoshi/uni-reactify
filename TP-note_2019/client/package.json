@@ -18,6 +18,7 @@
     "lodas": "^1.2.0",
     "lodash.isnumber": "^3.0.3",
     "npm": "^6.9.0",
+    "query-string": "^6.4.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-editext": "^3.1.0",

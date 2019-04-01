@@ -54,7 +54,12 @@ export default class CRUDViewListing
         const formData = this.state.updateForm;
 
         await sendRequest(
-            getUrl(config.baseurl, this.props.endpoint + '/' + entryId), {
+            getUrl(
+                config.baseurl,
+                this.props.updateEndpoint
+                    ? this.props.updateEndpoint(entry)
+                    : this.props.endpoint + '/' + entryId),
+            {
                 method: 'PUT',
                 headers: {
                     Accept: 'application/json',
@@ -80,7 +85,9 @@ export default class CRUDViewListing
         const formData = this.state.createForm;
 
         const newItem : T = await (await sendRequest(
-            getUrl(config.baseurl, this.props.endpoint), {
+            getUrl(
+                config.baseurl, this.props.createEndpoint || this.props.endpoint),
+            {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -90,6 +97,7 @@ export default class CRUDViewListing
             }
         )).json();
 
+        this.props.afterCreate && await this.props.afterCreate(newItem);
         await this.props.TForm.onSuccessCreate(formData);
 
         this.setState((prevState) => ({
@@ -117,7 +125,7 @@ export default class CRUDViewListing
                 onBody={this.onBody.bind(this)}
                 onError={exc => (
 
-                    toast.error('Échoué à récupérer les entrées.')
+                    toast.error('Échoué à récupérer les entrées.') && 'Échoué.'
             )}>
                 <div className="card">
                     <div className="card-header d-flex justify-content-center">

@@ -1,6 +1,6 @@
 import {Component} from 'react';
 import * as React from 'react';
-import {getUrl} from '../utils';
+import {getUrl, sendRequest} from '../utils';
 
 export default class JSONGet extends Component<IJSONFormProps, IJSONFormState> {
     public constructor(props: IJSONFormProps) {
@@ -13,7 +13,7 @@ export default class JSONGet extends Component<IJSONFormProps, IJSONFormState> {
 
     public async getBody() {
         try {
-            const resp = await (await fetch(
+            const resp = await (await sendRequest(
                 getUrl(this.props.baseurl, this.props.path),
                 {
                     headers: {
