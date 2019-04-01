@@ -1,32 +1,24 @@
-'use strict';
+const fs = require("fs");
+const path = require("path");
+const db = require("../db");
 
-const
-fs = require('fs'),
-Sequelize = require('sequelize');
+// this object will contain the model objects
+// each key being the model's name
+const models = {};
 
-// create Sequelize instance
-const sequelize = new Sequelize('[BDD_NAME]', '[USER]', '[PASSWORD]', {
-	host: 'localhost',
-	port: 3306,
-	dialect: 'mysql',
-	dialectOptions: { decimalNumbers: true }
-	// operatorsAliases: false
-	// logging: false
-});
-
-const db = {};
-
+// read the files of the current directory
 fs.readdirSync(__dirname)
-.filter((filename) => filename !== 'index.js')
-.forEach((filename) => {
-	const model = sequelize.import('./' + filename);
-	db[model.name] = model;
-});
+    .filter((filename) =>
+        // do not handle the current file
+        filename !== 'index.js'
+    )
+    .forEach((filename) => {
+        // Remove the file extension
+        filename = filename.split(".")[0];
 
-Object.keys(db).forEach((modelName) => {
-	db[modelName].associate(db);
-});
+        // Import the model
+        models[filename] = require(path.join(__dirname, filename));
+    });
 
-sequelize.sync();
-
-module.exports = db;
+// expose the db object
+module.exports = models;
