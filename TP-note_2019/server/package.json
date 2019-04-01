@@ -1,19 +1,38 @@
 {
-  "name": "menus",
+  "name": "w4a",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js",
+    "migrate": "node commands/migrate.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NyanKiyoshi/w4a.git"
   },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NyanKiyoshi/w4a/issues"
+  },
+  "homepage": "https://github.com/NyanKiyoshi/w4a#readme",
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
-    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
-    "mysql2": "^1.6.5",
-    "sequelize": "^5.2.3"
+    "express-jwt": "^5.3.1",
+    "express-unless": "^0.5.0",
+    "jsonwebtoken": "^8.5.0",
+    "mysql2": "^1.6.4",
+    "pg": "^7.8.0",
+    "sequelize": "^4.42.0",
+    "sprintf-js": "^1.1.2"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "sqlite3": "^4.0.6",
+    "supertest": "^3.4.2"
   }
 }
